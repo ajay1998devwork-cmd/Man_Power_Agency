@@ -1,0 +1,26 @@
+{
+  "name": "@manpower/database",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/migrate.ts",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx src/seed.ts",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.33.0",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.24.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.5.4",
+    "@types/node": "^20.16.5"
+  }
+}

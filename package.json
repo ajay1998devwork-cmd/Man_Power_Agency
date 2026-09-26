@@ -1,0 +1,23 @@
+{
+  "name": "manpower-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Manpower Consultancy SaaS Platform - Multi-tenant workforce management system",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.1.2",
+    "prettier": "^3.3.3"
+  },
+  "packageManager": "pnpm@9.10.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
