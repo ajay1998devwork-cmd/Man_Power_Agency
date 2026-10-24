@@ -14,7 +14,16 @@ import { Route as CandidatesRouteImport } from './routes/candidates'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as EmployeesRouteImport } from './routes/employees'
+import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as CandidatesCandidateIdRouteImport } from './routes/candidates/$candidateId'
+import { Route as CandidatesNewRouteImport } from './routes/candidates/new'
+import { Route as CompaniesIndexRouteImport } from './routes/companies/index'
+import { Route as CompaniesCompanyIdRouteImport } from './routes/companies/$companyId'
+import { Route as CompaniesNewRouteImport } from './routes/companies/new'
+import { Route as EmployeesEmployeeIdRouteImport } from './routes/employees/$employeeId'
+import { Route as InterviewsInterviewIdRouteImport } from './routes/interviews/$interviewId'
+import { Route as InterviewsNewRouteImport } from './routes/interviews/new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,43 +50,144 @@ const EmployeesRoute = EmployeesRouteImport.update({
   path: '/employees',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InterviewsRoute = InterviewsRouteImport.update({
+  id: '/interviews',
+  path: '/interviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CandidatesCandidateIdRoute = CandidatesCandidateIdRouteImport.update({
+  id: '/$candidateId',
+  path: '/$candidateId',
+  getParentRoute: () => CandidatesRoute,
+} as any)
+const CandidatesNewRoute = CandidatesNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => CandidatesRoute,
+} as any)
+const CompaniesIndexRoute = CompaniesIndexRouteImport.update({
+  id: '/companies/',
+  path: '/companies/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompaniesCompanyIdRoute = CompaniesCompanyIdRouteImport.update({
+  id: '/companies/$companyId',
+  path: '/companies/$companyId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompaniesNewRoute = CompaniesNewRouteImport.update({
+  id: '/companies/new',
+  path: '/companies/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmployeesEmployeeIdRoute = EmployeesEmployeeIdRouteImport.update({
+  id: '/$employeeId',
+  path: '/$employeeId',
+  getParentRoute: () => EmployeesRoute,
+} as any)
+const InterviewsInterviewIdRoute = InterviewsInterviewIdRouteImport.update({
+  id: '/$interviewId',
+  path: '/$interviewId',
+  getParentRoute: () => InterviewsRoute,
+} as any)
+const InterviewsNewRoute = InterviewsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => InterviewsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/candidates': typeof CandidatesRoute
+  '/candidates': typeof CandidatesRouteWithChildren
   '/clients': typeof ClientsRoute
   '/dashboard': typeof DashboardRoute
-  '/employees': typeof EmployeesRoute
+  '/employees': typeof EmployeesRouteWithChildren
+  '/interviews': typeof InterviewsRouteWithChildren
   '/login': typeof LoginRoute
+  '/candidates/$candidateId': typeof CandidatesCandidateIdRoute
+  '/candidates/new': typeof CandidatesNewRoute
+  '/companies/$companyId': typeof CompaniesCompanyIdRoute
+  '/companies/new': typeof CompaniesNewRoute
+  '/employees/$employeeId': typeof EmployeesEmployeeIdRoute
+  '/interviews/$interviewId': typeof InterviewsInterviewIdRoute
+  '/interviews/new': typeof InterviewsNewRoute
+  '/companies/': typeof CompaniesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/candidates': typeof CandidatesRoute
+  '/candidates': typeof CandidatesRouteWithChildren
   '/clients': typeof ClientsRoute
   '/dashboard': typeof DashboardRoute
-  '/employees': typeof EmployeesRoute
+  '/employees': typeof EmployeesRouteWithChildren
+  '/interviews': typeof InterviewsRouteWithChildren
   '/login': typeof LoginRoute
+  '/candidates/$candidateId': typeof CandidatesCandidateIdRoute
+  '/candidates/new': typeof CandidatesNewRoute
+  '/companies/$companyId': typeof CompaniesCompanyIdRoute
+  '/companies/new': typeof CompaniesNewRoute
+  '/employees/$employeeId': typeof EmployeesEmployeeIdRoute
+  '/interviews/$interviewId': typeof InterviewsInterviewIdRoute
+  '/interviews/new': typeof InterviewsNewRoute
+  '/companies': typeof CompaniesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/candidates': typeof CandidatesRoute
+  '/candidates': typeof CandidatesRouteWithChildren
   '/clients': typeof ClientsRoute
   '/dashboard': typeof DashboardRoute
-  '/employees': typeof EmployeesRoute
+  '/employees': typeof EmployeesRouteWithChildren
+  '/interviews': typeof InterviewsRouteWithChildren
   '/login': typeof LoginRoute
+  '/candidates/$candidateId': typeof CandidatesCandidateIdRoute
+  '/candidates/new': typeof CandidatesNewRoute
+  '/companies/$companyId': typeof CompaniesCompanyIdRoute
+  '/companies/new': typeof CompaniesNewRoute
+  '/employees/$employeeId': typeof EmployeesEmployeeIdRoute
+  '/interviews/$interviewId': typeof InterviewsInterviewIdRoute
+  '/interviews/new': typeof InterviewsNewRoute
+  '/companies/': typeof CompaniesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/candidates' | '/clients' | '/dashboard' | '/employees' | '/login'
+    | '/'
+    | '/candidates'
+    | '/clients'
+    | '/dashboard'
+    | '/employees'
+    | '/interviews'
+    | '/login'
+    | '/candidates/$candidateId'
+    | '/candidates/new'
+    | '/companies/$companyId'
+    | '/companies/new'
+    | '/employees/$employeeId'
+    | '/interviews/$interviewId'
+    | '/interviews/new'
+    | '/companies/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/candidates' | '/clients' | '/dashboard' | '/employees' | '/login'
+  to:
+    | '/'
+    | '/candidates'
+    | '/clients'
+    | '/dashboard'
+    | '/employees'
+    | '/interviews'
+    | '/login'
+    | '/candidates/$candidateId'
+    | '/candidates/new'
+    | '/companies/$companyId'
+    | '/companies/new'
+    | '/employees/$employeeId'
+    | '/interviews/$interviewId'
+    | '/interviews/new'
+    | '/companies'
   id:
     | '__root__'
     | '/'
@@ -85,16 +195,29 @@ export interface FileRouteTypes {
     | '/clients'
     | '/dashboard'
     | '/employees'
+    | '/interviews'
     | '/login'
+    | '/candidates/$candidateId'
+    | '/candidates/new'
+    | '/companies/$companyId'
+    | '/companies/new'
+    | '/employees/$employeeId'
+    | '/interviews/$interviewId'
+    | '/interviews/new'
+    | '/companies/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CandidatesRoute: typeof CandidatesRoute
+  CandidatesRoute: typeof CandidatesRouteWithChildren
   ClientsRoute: typeof ClientsRoute
   DashboardRoute: typeof DashboardRoute
-  EmployeesRoute: typeof EmployeesRoute
+  EmployeesRoute: typeof EmployeesRouteWithChildren
+  InterviewsRoute: typeof InterviewsRouteWithChildren
   LoginRoute: typeof LoginRoute
+  CompaniesCompanyIdRoute: typeof CompaniesCompanyIdRoute
+  CompaniesNewRoute: typeof CompaniesNewRoute
+  CompaniesIndexRoute: typeof CompaniesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -134,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmployeesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interviews': {
+      id: '/interviews'
+      path: '/interviews'
+      fullPath: '/interviews'
+      preLoaderRoute: typeof InterviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -141,16 +271,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/candidates/$candidateId': {
+      id: '/candidates/$candidateId'
+      path: '/$candidateId'
+      fullPath: '/candidates/$candidateId'
+      preLoaderRoute: typeof CandidatesCandidateIdRouteImport
+      parentRoute: typeof CandidatesRoute
+    }
+    '/candidates/new': {
+      id: '/candidates/new'
+      path: '/new'
+      fullPath: '/candidates/new'
+      preLoaderRoute: typeof CandidatesNewRouteImport
+      parentRoute: typeof CandidatesRoute
+    }
+    '/companies/': {
+      id: '/companies/'
+      path: '/companies'
+      fullPath: '/companies/'
+      preLoaderRoute: typeof CompaniesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/companies/$companyId': {
+      id: '/companies/$companyId'
+      path: '/companies/$companyId'
+      fullPath: '/companies/$companyId'
+      preLoaderRoute: typeof CompaniesCompanyIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/companies/new': {
+      id: '/companies/new'
+      path: '/companies/new'
+      fullPath: '/companies/new'
+      preLoaderRoute: typeof CompaniesNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/employees/$employeeId': {
+      id: '/employees/$employeeId'
+      path: '/$employeeId'
+      fullPath: '/employees/$employeeId'
+      preLoaderRoute: typeof EmployeesEmployeeIdRouteImport
+      parentRoute: typeof EmployeesRoute
+    }
+    '/interviews/$interviewId': {
+      id: '/interviews/$interviewId'
+      path: '/$interviewId'
+      fullPath: '/interviews/$interviewId'
+      preLoaderRoute: typeof InterviewsInterviewIdRouteImport
+      parentRoute: typeof InterviewsRoute
+    }
+    '/interviews/new': {
+      id: '/interviews/new'
+      path: '/new'
+      fullPath: '/interviews/new'
+      preLoaderRoute: typeof InterviewsNewRouteImport
+      parentRoute: typeof InterviewsRoute
+    }
   }
 }
 
+interface CandidatesRouteChildren {
+  CandidatesCandidateIdRoute: typeof CandidatesCandidateIdRoute
+  CandidatesNewRoute: typeof CandidatesNewRoute
+}
+
+const CandidatesRouteChildren: CandidatesRouteChildren = {
+  CandidatesCandidateIdRoute: CandidatesCandidateIdRoute,
+  CandidatesNewRoute: CandidatesNewRoute,
+}
+
+const CandidatesRouteWithChildren = CandidatesRoute._addFileChildren(
+  CandidatesRouteChildren,
+)
+
+interface EmployeesRouteChildren {
+  EmployeesEmployeeIdRoute: typeof EmployeesEmployeeIdRoute
+}
+
+const EmployeesRouteChildren: EmployeesRouteChildren = {
+  EmployeesEmployeeIdRoute: EmployeesEmployeeIdRoute,
+}
+
+const EmployeesRouteWithChildren = EmployeesRoute._addFileChildren(
+  EmployeesRouteChildren,
+)
+
+interface InterviewsRouteChildren {
+  InterviewsInterviewIdRoute: typeof InterviewsInterviewIdRoute
+  InterviewsNewRoute: typeof InterviewsNewRoute
+}
+
+const InterviewsRouteChildren: InterviewsRouteChildren = {
+  InterviewsInterviewIdRoute: InterviewsInterviewIdRoute,
+  InterviewsNewRoute: InterviewsNewRoute,
+}
+
+const InterviewsRouteWithChildren = InterviewsRoute._addFileChildren(
+  InterviewsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CandidatesRoute: CandidatesRoute,
+  CandidatesRoute: CandidatesRouteWithChildren,
   ClientsRoute: ClientsRoute,
   DashboardRoute: DashboardRoute,
-  EmployeesRoute: EmployeesRoute,
+  EmployeesRoute: EmployeesRouteWithChildren,
+  InterviewsRoute: InterviewsRouteWithChildren,
   LoginRoute: LoginRoute,
+  CompaniesCompanyIdRoute: CompaniesCompanyIdRoute,
+  CompaniesNewRoute: CompaniesNewRoute,
+  CompaniesIndexRoute: CompaniesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

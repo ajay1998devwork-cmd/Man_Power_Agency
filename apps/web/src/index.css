@@ -25,7 +25,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: #f1f5f9;
   color: #0f172a;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -34,6 +34,94 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+/* Directory pages use a compact toolbar so the data table gets the visual
+   priority instead of spending the viewport on introductory copy. */
+main > div.mb-8 {
+  margin-bottom: 1.25rem;
+}
+
+section.shadow-cardHover > div.border-b {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Warm hover state keeps directory interactions aligned with the orange brand
+   accent while remaining soft enough for dense table rows. */
+section.shadow-cardHover .group:hover {
+  background-color: rgb(255 247 237 / 0.95);
+  box-shadow: inset 3px 0 0 #f97316;
+}
+
+/* Create/edit forms share the compact details-page treatment: one container,
+   clear dividers, and no oversized card gaps between field groups. */
+form.space-y-6 {
+  overflow: hidden;
+  border: 1px solid rgb(226 232 240 / 0.85);
+  border-radius: 0.75rem;
+  background: white;
+  box-shadow: 0 4px 20px -4px rgb(0 0 0 / 0.05), 0 2px 6px -2px rgb(0 0 0 / 0.02);
+}
+
+form.space-y-6 > section.rounded-2xl {
+  margin-top: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #f1f5f9;
+  box-shadow: none;
+  padding: 1.25rem;
+}
+
+form.space-y-6 > section.rounded-2xl > div:first-child {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+form.space-y-6 > section.rounded-2xl > div:first-child h2 {
+  font-size: 0.95rem;
+}
+
+main > div > div.mb-8 {
+  margin-bottom: 1.25rem;
+}
+
+main > div > div.mb-8 h1 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+/* Candidate onboarding uses the same compact in-card heading as company
+   creation. */
+form.max-w-7xl {
+  position: relative;
+}
+
+main > div:has(form.max-w-7xl) > div.mb-8 {
+  display: none;
+}
+
+form.max-w-7xl::before {
+  position: relative;
+  display: block;
+  content: 'Add a candidate';
+  white-space: pre-line;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 1rem 1.25rem 2.75rem;
+  color: #0f2a4a;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
+
+form.max-w-7xl::after {
+  position: absolute;
+  top: 3.15rem;
+  left: 1.25rem;
+  content: 'Create a manual onboarding record. The candidate code will be generated automatically for your agency.';
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
 }
 
 /* Shared application surface and focus treatment. These tokens mirror the

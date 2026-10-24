@@ -3,13 +3,15 @@ export * from './users';
 export * from './roles';
 export * from './permissions';
 export * from './clients';
+export * from './companies';
+export * from './company-documents';
+export * from './interviews';
 export * from './locations';
 export * from './departments';
 export * from './candidates';
-export * from './interviews';
 export * from './verifications';
 export * from './employees';
-export * from './employee-assignments';
+export * from './employee-assignments'; // exports: employmentHistory
 export * from './documents';
 export * from './attendance';
 export * from './leave';

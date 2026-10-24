@@ -2,6 +2,8 @@
   "name": "@manpower/database",
   "version": "1.0.0",
   "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx src/migrate.ts",
@@ -14,13 +16,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "dotenv": "^18.0.4",
     "drizzle-orm": "^0.33.0",
     "postgres": "^3.4.4"
   },
   "devDependencies": {
+    "@types/node": "^20.16.5",
     "drizzle-kit": "^0.24.2",
     "tsx": "^4.19.1",
-    "typescript": "^5.5.4",
-    "@types/node": "^20.16.5"
+    "typescript": "^5.5.4"
   }
 }

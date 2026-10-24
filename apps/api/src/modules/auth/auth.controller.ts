@@ -7,10 +7,7 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() loginDto: { email: string; password: string }) {
-    return {
-      message: 'Login endpoint placeholder',
-      email: loginDto.email,
-    };
+    return this.authService.login(loginDto.email, loginDto.password);
   }
 
   @Post('logout')

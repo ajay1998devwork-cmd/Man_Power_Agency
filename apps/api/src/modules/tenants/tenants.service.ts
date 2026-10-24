@@ -6,11 +6,11 @@ export class TenantsService {
     return [];
   }
 
-  async findOne(id: string) {
+  async findOne(_id: string) {
     return null;
   }
 
-  async create(createTenantDto: any) {
+  async create(_createTenantDto: any) {
     return null;
   }
 }

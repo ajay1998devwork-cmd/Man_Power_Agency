@@ -5,6 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Building2, CheckCircle2, Eye, EyeOff, LockKeyhole, Mail, ShieldCheck } from 'lucide-react';
 import { Button } from '@manpower/ui';
+import { saveWorkspaceProfile } from '@/lib/workspace';
+import { useToast } from '@/components/ui/toast';
 
 export const Route = createFileRoute('/login')({
   component: LoginComponent,
@@ -20,6 +22,7 @@ type LoginForm = z.infer<typeof loginSchema>;
 
 function LoginComponent() {
   const navigate = useNavigate();
+  const toast = useToast();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -41,9 +44,18 @@ function LoginComponent() {
       if (!response.ok) throw new Error('Unable to sign in. Please check your credentials.');
       const result = await response.json();
       if (result.accessToken) localStorage.setItem('manpower_access_token', result.accessToken);
+      saveWorkspaceProfile({
+        tenantId: result.user?.tenantId ?? result.tenantId,
+        agencyName: result.user?.tenant?.name ?? result.tenant?.name ?? result.agencyName,
+        userName: result.user?.name ?? result.user?.fullName ?? result.user?.firstName,
+        userEmail: result.user?.email ?? result.email ?? data.email,
+        userRole: result.user?.role,
+      });
       navigate({ to: '/dashboard' });
     } catch (submissionError) {
-      setError(submissionError instanceof Error ? submissionError.message : 'Unable to sign in right now.');
+      const message = submissionError instanceof Error ? submissionError.message : 'Unable to sign in right now.';
+      setError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
